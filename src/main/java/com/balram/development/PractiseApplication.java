@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.balram.development.entity.Employee;
+import com.balram.development.repo.EmployeeRepository;
+
 @SpringBootApplication
 public class PractiseApplication {
 	
