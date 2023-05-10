@@ -13,7 +13,8 @@
 	<name>Practise</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
+		<snakeyaml.version>2.0</snakeyaml.version>
 	</properties>
 	<dependencies>
 		<dependency>
