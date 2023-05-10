@@ -2,20 +2,16 @@ package com.balram.development.entity;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter 
 @Setter 
-@ToString 
-@NoArgsConstructor 
-@EqualsAndHashCode 
-@AllArgsConstructor 
+@ToString
+@EqualsAndHashCode
 @Builder
 public class SupplierItemIdentifierId implements Serializable {
 	

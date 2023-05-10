@@ -29,7 +29,7 @@ public class PractiseApplication {
 			Instant start = Instant.now();
 			loop();
 			Instant end = Instant.now();
-			System.out.println("Ended in seconds " + Duration.between(start, end).toSeconds());
+			System.out.println("Ended in seconds " + Duration.between(start, end).getSeconds());
 		};
 	}
 	

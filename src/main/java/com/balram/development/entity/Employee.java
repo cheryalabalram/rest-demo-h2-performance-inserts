@@ -1,17 +1,19 @@
 package com.balram.development.entity;
 
-import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+import java.io.Serializable;
 
 @Entity
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private @Id @GeneratedValue Long id;
+	private @Id
+	@GeneratedValue Long id;
 	private String name;
 	private String role;
 
