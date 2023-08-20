@@ -19,7 +19,7 @@ public class PractiseApplication {
 	@Autowired EmployeeRepository repository;
 	@Autowired PerformanceRepo performanceRepo;
 	
-	@Bean
+//	@Bean
 	CommandLineRunner initDatabase() {
 
 		return args -> {
