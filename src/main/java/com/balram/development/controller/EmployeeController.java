@@ -1,10 +1,10 @@
 package com.balram.development.controller;
 
 import com.balram.development.entity.Employee;
-import com.balram.development.entity.SupplierItemIdentifier;
+import com.balram.development.entity.EmployeePerformance;
 import com.balram.development.exceptions.EmployeeNotFoundException;
+import com.balram.development.repo.EmployeePerformanceRepository;
 import com.balram.development.repo.EmployeeRepository;
-import com.balram.development.repo.PerformanceRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class EmployeeController {
   private EmployeeRepository employeeRepository;
 
   @Autowired
-  private PerformanceRepo performanceRepo;
+  private EmployeePerformanceRepository employeePerformanceRepository;
   
   @GetMapping("/employees")
   List<Employee> all() {
@@ -62,33 +62,28 @@ public class EmployeeController {
     employeeRepository.deleteById(id);
   }
 
-  @GetMapping(value = "/nonp")
-  public boolean nonp(){
+  @GetMapping(value = "/serializable")
+  public boolean serializable(){
     Instant start = Instant.now();
     boolean status = employeeLoop();
     Instant end = Instant.now();
-    log.info("Ended in seconds " + Duration.between(start, end).getSeconds());
+    log.info("With Serializable - Ended in seconds " + Duration.between(start, end).getSeconds());
     return status;
   }
 
-  @GetMapping(value = "/withp")
-  public boolean withp(){
+  @GetMapping(value = "/persistable")
+  public boolean persistable(){
     Instant start = Instant.now();
     boolean status = performanceLoop();
     Instant end = Instant.now();
-    log.info("Ended in seconds " + Duration.between(start, end).getSeconds());
+    log.info("With Persistable - Ended in seconds " + Duration.between(start, end).getSeconds());
     return status;
-  }
-
-  @GetMapping(value = "/supplier")
-  public List<SupplierItemIdentifier> getAllSupplier(){
-    return performanceRepo.findAll();
   }
 
   private boolean employeeLoop(){
     try {
-      for(int i=0; i < 2000; i++) {
-          System.out.println("Preloading " + employeeRepository.save(new Employee("Examine", "Developer" + i)));
+      for(int i=0; i < 20000; i++) {
+          log.info("Employee Id - {} ", employeeRepository.save(new Employee("Examine", "Developer" + i)).getId());
         }
     }catch (Exception e){
       log.error("Exception Thrown - ", e);
@@ -98,11 +93,11 @@ public class EmployeeController {
 
   private boolean performanceLoop(){
     try {
-      for(int i=0; i < 2000; i++) {
-        System.out.println(" Performance : "+ performanceRepo.save(new SupplierItemIdentifier("buType"+i,"b"+i,"c"+i,"d"+i,"e"+i)));
+      for(int i=0; i < 20000; i++) {
+        log.info("Performance - {} ",employeePerformanceRepository.save(new EmployeePerformance("Examine", "Developer" + i)));
       }
     }catch (Exception e){
-      log.error("Exception Thrown - ", e);
+      log.warn("Exception Thrown - ", e);
     }
     return true;
   }
